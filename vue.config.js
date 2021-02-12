@@ -1,7 +1,7 @@
 const path = require('path');
 
 module.exports = {
-  publicPath: process.env.NODE_ENV === 'production' ? '/schedule.prismproject.jp/' : '',
+  // publicPath: process.env.NODE_ENV === 'production' ? '/schedule.prismproject.jp/' : '',
   outputDir: path.resolve(__dirname, 'docs'),
   lintOnSave: false,
   transpileDependencies: [
@@ -17,7 +17,12 @@ module.exports = {
         'og:title': 'Prism Project Schedule',
         'og:type': 'website',
         'og:description': 'PRISM project is a brand new multinational vTuber agency to melt boundaries around the world.',
-        'og:image': 'https://vtubertools.github.io/schedule.prismproject.jp/img/icons/android-chrome-512x512.png',
+        'og:image': 'https://schedule.prismproject.jp/img/card.jpg',
+        'twitter:card': 'summary_large_image',
+        'twitter:site': '@PRISMproj',
+        'twitter:title': 'Prism Project Schedule',
+        'twitter:description': 'PRISM project is a brand new multinational vTuber agency to melt boundaries around the world.',
+        'twitter:image': 'https://schedule.prismproject.jp/img/card.jpg',
       };
       return args;
     });
