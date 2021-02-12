@@ -1,5 +1,6 @@
 import Vue from 'vue';
 
+const PREFIX = 'prism';
 const VIDEO_CACHE = 15;
 const TWEET_CACHE = 1800;
 
@@ -12,20 +13,20 @@ let tweetsTime = 0;
 let tweets = {};
 let darkMode = {};
 try {
-  if (!localStorage.getItem('channelsVer')) localStorage.setItem('channelsVer', '0');
-  if (!localStorage.getItem('channels')) localStorage.setItem('channels', '{}');
-  if (!localStorage.getItem('videosTime')) localStorage.setItem('videosTime', '0');
-  if (!localStorage.getItem('videos')) localStorage.setItem('videos', '{}');
-  if (!localStorage.getItem('tweetsTime')) localStorage.setItem('tweetsTime', '0');
-  if (!localStorage.getItem('tweets')) localStorage.setItem('tweets', '{}');
-  if (!localStorage.getItem('darkMode')) localStorage.setItem('darkMode', '0');
-  channelsVer = parseInt(localStorage.getItem('channelsVer'), 10) || 0;
-  channels = JSON.parse(localStorage.getItem('channels'));
-  videosTime = parseInt(localStorage.getItem('videosTime'), 10) || 0;
-  videos = JSON.parse(localStorage.getItem('videos'));
-  tweetsTime = parseInt(localStorage.getItem('tweetsTime'), 10) || 0;
-  tweets = JSON.parse(localStorage.getItem('tweets'));
-  darkMode = parseInt(localStorage.getItem('darkMode'), 10) === 1;
+  if (!localStorage.getItem(`${PREFIX}_channelsVer`)) localStorage.setItem(`${PREFIX}_channelsVer`, '0');
+  if (!localStorage.getItem(`${PREFIX}_channels`)) localStorage.setItem(`${PREFIX}_channels`, '{}');
+  if (!localStorage.getItem(`${PREFIX}_videosTime`)) localStorage.setItem(`${PREFIX}_videosTime`, '0');
+  if (!localStorage.getItem(`${PREFIX}_videos`)) localStorage.setItem(`${PREFIX}_videos`, '{}');
+  if (!localStorage.getItem(`${PREFIX}_tweetsTime`)) localStorage.setItem(`${PREFIX}_tweetsTime`, '0');
+  if (!localStorage.getItem(`${PREFIX}_tweets`)) localStorage.setItem(`${PREFIX}_tweets`, '{}');
+  if (!localStorage.getItem(`${PREFIX}_darkMode`)) localStorage.setItem(`${PREFIX}_darkMode`, '0');
+  channelsVer = parseInt(localStorage.getItem(`${PREFIX}_channelsVer`), 10) || 0;
+  channels = JSON.parse(localStorage.getItem(`${PREFIX}_channels`));
+  videosTime = parseInt(localStorage.getItem(`${PREFIX}_videosTime`), 10) || 0;
+  videos = JSON.parse(localStorage.getItem(`${PREFIX}_videos`));
+  tweetsTime = parseInt(localStorage.getItem(`${PREFIX}_tweetsTime`), 10) || 0;
+  tweets = JSON.parse(localStorage.getItem(`${PREFIX}_tweets`));
+  darkMode = parseInt(localStorage.getItem(`${PREFIX}_darkMode`), 10) === 1;
 } catch (error) {
   console.error('Unable to initialize cache data.\n', error.message);
 }
@@ -49,8 +50,8 @@ Vue.use({
       setChannels(newChannelsVer, newChannels) {
         this.channelsVer = parseInt(newChannelsVer, 10);
         this.channels = newChannels;
-        localStorage.setItem('channelsVer', newChannelsVer);
-        localStorage.setItem('channels', JSON.stringify(newChannels));
+        localStorage.setItem(`${PREFIX}_channelsVer`, newChannelsVer);
+        localStorage.setItem(`${PREFIX}_channels`, JSON.stringify(newChannels));
       },
       getVideos() {
         if (Date.now() - this.videosTime > (VIDEO_CACHE * 1000)) return null;
@@ -59,8 +60,8 @@ Vue.use({
       setVideos(newVideos) {
         this.videosTime = Date.now();
         this.videos = newVideos;
-        localStorage.setItem('videosTime', this.videosTime);
-        localStorage.setItem('videos', JSON.stringify(newVideos));
+        localStorage.setItem(`${PREFIX}_videosTime`, this.videosTime);
+        localStorage.setItem(`${PREFIX}_videos`, JSON.stringify(newVideos));
       },
       getTweets() {
         if (Date.now() - this.tweetsTime > (TWEET_CACHE * 1000)) return null;
@@ -69,15 +70,15 @@ Vue.use({
       setTweets(newTweets) {
         this.tweetsTime = Date.now();
         this.tweets = newTweets;
-        localStorage.setItem('tweetsTime', this.tweetsTime);
-        localStorage.setItem('tweets', JSON.stringify(newTweets));
+        localStorage.setItem(`${PREFIX}_tweetsTime`, this.tweetsTime);
+        localStorage.setItem(`${PREFIX}_tweets`, JSON.stringify(newTweets));
       },
       getDarkMode() {
         return this.darkMode;
       },
       setDarkMode(isDark) {
         this.darkMode = isDark;
-        localStorage.setItem('darkMode', this.darkMode ? '1' : '0');
+        localStorage.setItem(`${PREFIX}_darkMode`, this.darkMode ? '1' : '0');
       },
     };
   },

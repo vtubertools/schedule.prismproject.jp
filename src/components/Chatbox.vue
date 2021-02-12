@@ -93,7 +93,7 @@ export default {
       this.currentChat.color = '#6441a5';
       this.twitchFrameSrc = `https://www.twitch.tv/embed/${twitchName}/chat?parent=${window.location.hostname}`;
       this.youtubeFrameSrc = null;
-      console.log(this.twitchFrameSrc );
+      console.log(this.twitchFrameSrc);
     },
   },
   mounted() {

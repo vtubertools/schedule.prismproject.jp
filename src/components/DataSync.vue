@@ -4,8 +4,6 @@
 
 <script>
 import moment from 'moment-timezone';
-import sampleTwitch from '../data/sample-twitch.json';
-import sampleYoutube from '../data/sample-youtube.json';
 
 const VIDEO_REFRESH = 120;
 
@@ -18,7 +16,7 @@ export default {
       twitch: {},
       youtube: {},
     },
-    channelVer: 3,
+    channelVer: 1,
   }),
   methods: {
     async loadChannels() {
