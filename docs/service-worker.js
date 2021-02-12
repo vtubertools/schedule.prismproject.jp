@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/4.3.1/workbox-sw.js");
 
 importScripts(
-  "/schedule.prismproject.jp/precache-manifest.be4b6f367c6f69fc0fd09345408fe251.js"
+  "/schedule.prismproject.jp/precache-manifest.96b8f95059ad8d291d48f7da00553f3b.js"
 );
 
 workbox.core.setCacheNameDetails({prefix: "schedule.prismproject.jp"});
