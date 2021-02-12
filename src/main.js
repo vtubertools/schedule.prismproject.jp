@@ -4,6 +4,10 @@ import './registerServiceWorker';
 import router from './router';
 import store from './store';
 import vuetify from './plugins/vuetify';
+import './plugins/mobile';
+import './plugins/chooks';
+import './plugins/jetri';
+import './plugins/cache';
 
 Vue.config.productionTip = false;
 

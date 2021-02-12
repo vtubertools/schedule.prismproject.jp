@@ -1,0 +1,36 @@
+{
+  "live": [
+    {
+      "id": "ui2EjtPFxhc",
+      "title": "Sample YouTube Stream",
+      "channelId": "UCbTkauz77OIO9KE5YcAKPlg",
+      "status": "live",
+      "viewers": 3254,
+      "published": 1610281200,
+      "scheduled": 1610283600,
+      "start": 1610283637
+    }
+  ],
+  "upcoming": [
+    {
+      "id": "ui2EjtPFxhc",
+      "title": "【Birthday Celebration | 2K Subs】Yahoo!【Tsunderia】",
+      "channelId": "UCbTkauz77OIO9KE5YcAKPlg",
+      "status": "upcoming",
+      "viewers": null,
+      "published": 1609922230,
+      "scheduled": 1610993200,
+      "start": null
+    },
+    {
+      "id": "zQre6kaoBNM",
+      "title": "【Mad Father】alt endings【Tsunderia】",
+      "channelId": "UCdrQWcX7XLDSUEh9SAxnyBg",
+      "status": "upcoming",
+      "viewers": null,
+      "published": 1609886843,
+      "scheduled": 1610990000,
+      "start": null
+    }
+  ]
+}
