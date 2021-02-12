@@ -17,12 +17,12 @@ module.exports = {
         'og:title': 'Prism Project Schedule',
         'og:type': 'website',
         'og:description': 'PRISM project is a brand new multinational vTuber agency to melt boundaries around the world.',
-        'og:image': 'https://schedule.prismproject.jp/img/card.jpg',
+        'og:image': 'https://schedule.prismproject.jp/img/card.png',
         'twitter:card': 'summary_large_image',
         'twitter:site': '@PRISMproj',
         'twitter:title': 'Prism Project Schedule',
         'twitter:description': 'PRISM project is a brand new multinational vTuber agency to melt boundaries around the world.',
-        'twitter:image': 'https://schedule.prismproject.jp/img/card.jpg',
+        'twitter:image': 'https://schedule.prismproject.jp/img/card.png',
       };
       return args;
     });
