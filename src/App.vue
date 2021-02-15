@@ -9,7 +9,7 @@
       <v-toolbar-title @click="goHome()">
         <v-img src="@/assets/logo.png" contain height="40"></v-img>
       </v-toolbar-title>
-      <v-btn href="https://www.prismproject.jp" target="_blank" icon right>
+      <v-btn href="https://twitter.com/PRISMproj" target="_blank" icon right>
         <v-icon>mdi-information-outline</v-icon>
       </v-btn>
     </v-app-bar>
