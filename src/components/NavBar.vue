@@ -192,7 +192,7 @@
 
         <!-- LEARN MORE -->
         <div class="learn-more text-center text-body-2 grey--text mt-4 mb-4" v-show="drawer">
-          <a href="https://www.prismproject.jp" target="_blank">Learn more about PRISM Project</a>
+          <a href="https://twitter.com/PRISMproj" target="_blank">Learn more about PRISM Project</a>
         </div>
       </div>
     </v-navigation-drawer>
