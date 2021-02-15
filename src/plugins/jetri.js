@@ -12,6 +12,15 @@ class JetriAPI {
     });
   }
 
+  // eslint-disable-next-line class-methods-use-this
+  buildUrlFallback(file) {
+    return url.format({
+      protocol: 'https',
+      host: 'vtubertools-tjgkd.ondigitalocean.app',
+      pathname: `/prismproject/${file}.json`,
+    });
+  }
+
   // channels
   // twitch
   // twitter
@@ -22,7 +31,18 @@ class JetriAPI {
       if (!result || !result.data) throw new Error();
       return typeof result.data === 'string' ? JSON.parse(result.data) : result.data;
     } catch (error) {
-      console.warn(`Unable to fetch ${file} from JetriAPI`);
+      console.warn(`Unable to fetch ${file} from main source`);
+      return null;
+    }
+  }
+
+  async getFallback(file) {
+    try {
+      const result = await axios.get(this.buildUrlFallback(file));
+      if (!result || !result.data) throw new Error();
+      return typeof result.data === 'string' ? JSON.parse(result.data) : result.data;
+    } catch (error) {
+      console.warn(`Unable to fetch ${file} even from fallback`);
       return null;
     }
   }

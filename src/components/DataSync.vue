@@ -23,7 +23,9 @@ export default {
       let channels = this.$cache.getChannels(this.channelVer);
       if (!channels) {
         channels = {};
-        const results = await this.$jetri.get('channels');
+        let results = await this.$jetri.get('channels').catch(() => null);
+        if (!results) results = await this.$jetri.getFallback('channels');
+        if (!results) return;
         console.warn('REQUEST CHANNELS', results);
         Object.values(results).forEach((channel) => {
           channels[channel.youtube] = channel;
@@ -39,6 +41,8 @@ export default {
       let tweets = this.$cache.getTweets();
       if (!tweets) {
         tweets = await this.$jetri.get('twitter');
+        if (!tweets) tweets = await this.$jetri.getFallback('twitter');
+        if (!tweets) return;
         console.warn('REQUEST TWEETS', tweets);
         this.$cache.setTweets(tweets);
       }
@@ -53,6 +57,8 @@ export default {
           // Promise.resolve(sampleTwitch),
           // Promise.resolve(sampleYoutube),
         ]);
+        if (!results[0]) results[0] = await this.$jetri.getFallback('twitch');
+        if (!results[1]) results[1] = await this.$jetri.getFallback('youtube');
         this.videos = {
           twitch: results[0],
           live: results[1].live,
