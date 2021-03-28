@@ -14,17 +14,15 @@
             :viewers="video.viewers"
             live="1" />
         </v-col>
-        <v-col v-for="video in live" :key="video.key"
+        <v-col v-for="video in live" :key="video.key" @click="goWatch()"
           cols="12" xl="2" lg="3" md="4" sm="6">
-          <a :href="`https://www.youtube.com/watch?v=${video.id}`" target="_blank" class="video-link">
-            <Thumbnail
-              :id="video.id"
-              :channelId="video.channelId"
-              :title="video.title"
-              :start="video.start || video.scheduled"
-              :viewers="video.viewers"
-              live="1" />
-          </a>
+          <Thumbnail
+            :id="video.id"
+            :channelId="video.channelId"
+            :title="video.title"
+            :start="video.start || video.scheduled"
+            :viewers="video.viewers"
+            live="1" />
         </v-col>
       </v-row>
     </v-container>
