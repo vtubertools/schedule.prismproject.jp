@@ -2,7 +2,7 @@ import Vue from 'vue';
 
 const PREFIX = 'prism';
 const VIDEO_CACHE = 15;
-const TWEET_CACHE = 1800;
+const TWEET_CACHE = 600;
 
 // Initialize cache
 let channelsVer = 0;
