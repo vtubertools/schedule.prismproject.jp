@@ -280,7 +280,6 @@ export default {
     channels(val) {
       this.displayChannels = [];
       Object.keys(val).forEach((channelKey) => {
-        console.log('channelKey', channelKey);
         const gen = this.gens[channelKey];
         this[`displayChannels${gen}`].push({
           id: channelKey,
