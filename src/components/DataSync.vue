@@ -16,7 +16,7 @@ export default {
       twitch: {},
       youtube: {},
     },
-    channelVer: 3,
+    channelVer: 4,
   }),
   methods: {
     async loadChannels() {
