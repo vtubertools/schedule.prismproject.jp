@@ -2,9 +2,11 @@ import Vue from 'vue';
 
 const PREFIX = 'prism';
 const VIDEO_CACHE = 15;
-const TWEET_CACHE = 600;
+const TWEET_CACHE = 1800;
+const CHANNEL_CACHE = 1800;
 
 // Initialize cache
+let channelsTime = 0;
 let channelsVer = 0;
 let channels = {};
 let videosTime = 0;
@@ -13,6 +15,7 @@ let tweetsTime = 0;
 let tweets = {};
 let darkMode = {};
 try {
+  if (!localStorage.getItem(`${PREFIX}_channelsTime`)) localStorage.setItem(`${PREFIX}_channelsTime`, '0');
   if (!localStorage.getItem(`${PREFIX}_channelsVer`)) localStorage.setItem(`${PREFIX}_channelsVer`, '0');
   if (!localStorage.getItem(`${PREFIX}_channels`)) localStorage.setItem(`${PREFIX}_channels`, '{}');
   if (!localStorage.getItem(`${PREFIX}_videosTime`)) localStorage.setItem(`${PREFIX}_videosTime`, '0');
@@ -20,6 +23,7 @@ try {
   if (!localStorage.getItem(`${PREFIX}_tweetsTime`)) localStorage.setItem(`${PREFIX}_tweetsTime`, '0');
   if (!localStorage.getItem(`${PREFIX}_tweets`)) localStorage.setItem(`${PREFIX}_tweets`, '{}');
   if (!localStorage.getItem(`${PREFIX}_darkMode`)) localStorage.setItem(`${PREFIX}_darkMode`, '0');
+  channelsTime = parseInt(localStorage.getItem(`${PREFIX}_channelsTime`), 10) || 0;
   channelsVer = parseInt(localStorage.getItem(`${PREFIX}_channelsVer`), 10) || 0;
   channels = JSON.parse(localStorage.getItem(`${PREFIX}_channels`));
   videosTime = parseInt(localStorage.getItem(`${PREFIX}_videosTime`), 10) || 0;
@@ -35,6 +39,7 @@ Vue.use({
   install: (VueInst) => {
     // eslint-disable-next-line no-param-reassign
     VueInst.prototype.$cache = {
+      channelsTime,
       channelsVer,
       channels,
       videosTime,
@@ -45,11 +50,14 @@ Vue.use({
       getChannels(expectVer = null) {
         if (expectVer && parseInt(expectVer, 10) !== this.channelsVer) return null;
         if (!Object.keys(this.channels).length) return null;
+        if (Date.now() - this.channelsTime > (CHANNEL_CACHE * 1000)) return null;
         return this.channels;
       },
       setChannels(newChannelsVer, newChannels) {
+        this.channelsTime = Date.now();
         this.channelsVer = parseInt(newChannelsVer, 10);
         this.channels = newChannels;
+        localStorage.setItem(`${PREFIX}_channelsTime`, this.channelsTime);
         localStorage.setItem(`${PREFIX}_channelsVer`, newChannelsVer);
         localStorage.setItem(`${PREFIX}_channels`, JSON.stringify(newChannels));
       },
