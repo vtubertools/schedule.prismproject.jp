@@ -27,4 +27,13 @@ module.exports = {
       return args;
     });
   },
+  pwa: {
+    workboxOptions: {
+      exclude: [
+        'CNAME',
+        /(.*).css.map/g,
+        /(.*).js.map/g,
+      ],
+    },
+  },
 };
