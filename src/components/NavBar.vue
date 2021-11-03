@@ -249,6 +249,30 @@
         <div class="pt-4"></div>
         <v-divider v-show="drawer"></v-divider>
 
+        <div class="section-header section-menu subtitle-2 grey--text pt-4" v-show="drawer">
+          PRISM PROJECT
+        </div>
+        <v-expand-transition>
+          <v-list v-show="drawer">
+            <v-list-item
+              :class="'stream-entry pr-1 py-0'.split(' ').concat([ drawer ? 'pl-2' : 'pl-0' ])"
+              v-for="channel in displayChannels999" :key="channel.id"
+              @click="goChannel(channel.twitter)">
+              <v-list-item-avatar class="my-0">
+                <img :src="channel.image" referrerPolicy="no-referrer">
+              </v-list-item-avatar>
+              <v-list-item-content class="pt-2 pb-2">
+                <v-list-item-title>{{channel.name}}</v-list-item-title>
+                <!-- <v-list-item-subtitle>
+                  {{displayNumber(channel.subscribers)}} subscribers
+                </v-list-item-subtitle> -->
+              </v-list-item-content>
+            </v-list-item>
+          </v-list>
+        </v-expand-transition>
+        <div class="pt-4"></div>
+        <v-divider v-show="drawer"></v-divider>
+
         <!-- TOGGLE DARK MODE -->
         <v-list>
           <v-list-item class="stream-entry pr-1 px-0 py-0 pl-2" @click="toggleDarkMode()">
@@ -280,6 +304,7 @@ export default {
     displayChannels2: [],
     displayChannels3: [],
     displayChannels4: [],
+    displayChannels999: [],
     showMenu: false,
     gens: {
       UC2hWFlqMew61Jy6A8zu5HzQ: 1,
@@ -296,6 +321,8 @@ export default {
       'UCx_A6fns9qKjybu-6k0ur1g': 4,
       UCkJ64W0J7R0zCSAsZfRIhVQ: 4,
       'UCKRGwowORbvAnoeZ-G06duQ': 4,
+
+      'UC4JpSoHVcv4Q00So-CmdUDQ': 999,
     },
   }),
   watch: {
@@ -336,6 +363,11 @@ export default {
         return 0;
       });
       this.displayChannels4 = this.displayChannels4.sort((a, b) => {
+        if (a.published > b.published) return 1;
+        if (a.published < b.published) return -1;
+        return 0;
+      });
+      this.displayChannels999 = this.displayChannels999.sort((a, b) => {
         if (a.published > b.published) return 1;
         if (a.published < b.published) return -1;
         return 0;
