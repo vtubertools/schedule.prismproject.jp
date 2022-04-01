@@ -63,6 +63,10 @@ export default {
           twitch: results[0],
           live: results[1].live,
           upcoming: results[1].upcoming
+            .filter((video) => {
+              if (!video.scheduled) return true;
+              return (video.scheduled - (new Date().getTime() / 1000)) < 1209600;
+            })
             .sort((a, b) => {
               const aTime = a.start || a.scheduled || a.published;
               const bTime = b.start || b.scheduled || b.published;
