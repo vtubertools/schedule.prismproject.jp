@@ -29,6 +29,7 @@ module.exports = {
   },
   pwa: {
     workboxOptions: {
+      skipWaiting: true,
       exclude: [
         'CNAME',
         /(.*).css.map/g,
