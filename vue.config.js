@@ -28,7 +28,7 @@ module.exports = {
     });
   },
   pwa: {
-    assetsVersion: '2022_04_01_0000',
+    assetsVersion: '2022_05_23_0000',
     workboxOptions: {
       skipWaiting: true,
       exclude: [
