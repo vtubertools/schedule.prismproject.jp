@@ -6,6 +6,7 @@
 import moment from 'moment-timezone';
 
 const VIDEO_REFRESH = 120;
+const AUTOMARK_LIVE = false;
 
 export default {
   name: 'DataSync',
@@ -59,6 +60,14 @@ export default {
         ]);
         if (!results[0]) results[0] = await this.$jetri.getFallback('twitch');
         if (!results[1]) results[1] = await this.$jetri.getFallback('youtube');
+        // Live that have not yet started
+        results[1].live = results[1].live.filter((item) => {
+          if (!item.start) {
+            results[1].upcoming.push(item);
+            return false;
+          }
+          return true;
+        });
         this.videos = {
           twitch: results[0],
           live: results[1].live,
@@ -92,7 +101,7 @@ export default {
       this.videos.upcoming.forEach((video) => {
         const nowMoment = moment();
         const scheduleMoment = moment.unix(video.scheduled);
-        if (scheduleMoment.isBefore(nowMoment)) {
+        if (scheduleMoment.isBefore(nowMoment) && AUTOMARK_LIVE) {
           live.push(video);
         } else {
           const remainMins = scheduleMoment.diff(nowMoment, 'minute');
